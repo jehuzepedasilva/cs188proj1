@@ -106,19 +106,18 @@ def depthFirstSearch(problem: SearchProblem):
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    visited = set()
+    visited = [] # has to be a list since we cant add mutable objects into a set
     state = (problem.getStartState(), [])
     queue = util.Queue()
     queue.push(state)
     
     while not queue.isEmpty():
         state = queue.pop()
-        print(state)
         if problem.isGoalState(state[0]):
             break
         if state[0] not in visited:
-            for pos, dir, c in problem.getSuccessors(state[0]):
-                visited.add(state[0])
+            visited += [state[0]]
+            for pos, dir, cost in problem.getSuccessors(state[0]):
                 queue.push((pos, state[1] + [dir]))
     
     return state[1]

@@ -514,14 +514,16 @@ def foodHeuristic(state: Tuple[Tuple, List[List]], problem: FoodSearchProblem):
     if not listOfFood:
         return 0
     
-    unncessary_dist = problem.heuristicInfo
-    curr_man = 0
-    farthestFoodDistance, farthestFood = max([(util.manhattanDistance(position, i), i) for i in listOfFood], key=lambda x: x[0])
+    # unncessary_dist = problem.heuristicInfo
+    # curr_man = 0
+    #farthestFoodDistance, farthestFood = max([(util.manhattanDistance(position, i), i) for i in listOfFood], key=lambda x: x[0])
 
-    if(position, farthestFood) not in unncessary_dist:
-        unncessary_dist[(position, farthestFood)] = mazeDistance(position, farthestFood, problem.startingGameState)
-    newD = unncessary_dist[(position, farthestFood)] 
-    curr_man = max(curr_man, newD)
+    # if(position, farthestFood) not in unncessary_dist:
+    #     unncessary_dist[(position, farthestFood)] = mazeDistance(position, farthestFood, problem.startingGameState)
+    # newD = unncessary_dist[(position, farthestFood)] 
+    # curr_man = max(curr_man, newD)
+
+    curr_man = min(util.manhattanDistance(position, i) for i in listOfFood)
     return curr_man
     # for i in foodGrid.asList():
     #     manhattan = util.manhattanDistance(position, i)
